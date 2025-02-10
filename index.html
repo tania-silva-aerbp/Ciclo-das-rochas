@@ -1,0 +1,167 @@
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ciclo das Rochas - Diorama Interativo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Ciclo das Rochas</h1>
+    
+    <div class="diorama">
+      <svg id="rockCycle" viewBox="0 0 800 450">
+        <!-- Background elements -->
+        <defs>
+          <!-- Magma Pattern -->
+          <pattern id="magmaPattern" patternUnits="userSpaceOnUse" width="30" height="30">
+            <circle cx="15" cy="15" r="10" fill="#ff6b6b" opacity="0.6"/>
+          </pattern>
+          
+          <!-- Metamorphic Rock Pattern -->
+          <pattern id="metamorphicPattern" patternUnits="userSpaceOnUse" width="60" height="60">
+            <path d="M0 15 L60 15 M0 45 L60 45" stroke="#666" stroke-width="30" stroke-linecap="round"/>
+            <path d="M15 0 L15 60 M45 0 L45 60" stroke="#888" stroke-width="20" stroke-linecap="round"/>
+            <path d="M0 15 L60 15 M0 45 L60 45" stroke="#999" stroke-width="2"/>
+            <path d="M15 0 L15 60 M45 0 L45 60" stroke="#777" stroke-width="2"/>
+          </pattern>
+          
+          <!-- Igneous Rock Pattern -->
+          <pattern id="igneousPattern" patternUnits="userSpaceOnUse" width="50" height="50">
+            <circle cx="10" cy="10" r="8" fill="#8B4513"/>
+            <circle cx="30" cy="30" r="12" fill="#A0522D"/>
+            <circle cx="45" cy="15" r="6" fill="#6B4423"/>
+            <circle cx="15" cy="40" r="9" fill="#8B4513"/>
+            <path d="M0 0 L50 50 M50 0 L0 50" stroke="#693d29" stroke-width="1"/>
+          </pattern>
+          
+          <!-- Sedimentary Rock Pattern -->
+          <pattern id="sedimentaryPattern" patternUnits="userSpaceOnUse" width="50" height="50">
+            <rect x="0" y="0" width="50" height="10" fill="#d2b48c"/>
+            <rect x="0" y="10" width="50" height="10" fill="#deb887"/>
+            <rect x="0" y="20" width="50" height="10" fill="#d2b48c"/>
+            <rect x="0" y="30" width="50" height="10" fill="#c19a6b"/>
+            <rect x="0" y="40" width="50" height="10" fill="#deb887"/>
+            <path d="M0 10 L50 10 M0 20 L50 20 M0 30 L50 30 M0 40 L50 40" 
+                  stroke="#b8860b" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        
+        <!-- Environment - adjusted height -->
+        <rect x="0" y="375" width="800" height="75" fill="#8b4513"/>
+        <rect x="0" y="0" width="800" height="375" fill="#87ceeb"/>
+        
+        <!-- Magma Pool -->
+        <g id="magmaPool" class="rock-group" data-type="magma">
+          <path d="M550,300 
+                   C550,300 600,290 650,300 
+                   C700,310 750,300 750,300
+                   L750,350 
+                   L550,350 Z" 
+                fill="url(#magmaPattern)">
+            <animate attributeName="d" 
+                     dur="3s"
+                     repeatCount="indefinite"
+                     values="
+                       M550,300 C550,300 600,290 650,300 C700,310 750,300 750,300 L750,350 L550,350 Z;
+                       M550,300 C550,300 600,310 650,300 C700,290 750,300 750,300 L750,350 L550,350 Z;
+                       M550,300 C550,300 600,290 650,300 C700,310 750,300 750,300 L750,350 L550,350 Z"
+            />
+          </path>
+          <text x="650" y="340" fill="#fff" class="magma-text">Magma</text>
+        </g>
+        
+        <!-- Rock Groups - adjusted y positions -->
+        <g id="metamorphicRocks" class="rock-group" data-type="metamórfica">
+          <path d="M100,250 
+                   C100,250 120,220 150,200 
+                   C180,220 200,250 200,250 
+                   C200,250 150,270 100,250 Z" 
+                fill="url(#metamorphicPattern)"/>
+          <text x="150" y="280">Rochas Metamórficas</text>
+        </g>
+        
+        <g id="igneousRocks" class="rock-group" data-type="ígnea">
+          <path d="M600,250 
+                   C600,250 620,220 650,200 
+                   C680,220 700,250 700,250 
+                   C700,250 650,270 600,250 Z" 
+                fill="url(#igneousPattern)"/>
+          <text x="625" y="280">Rochas Ígneas</text>
+        </g>
+        
+        <g id="sedimentaryRocks" class="rock-group" data-type="sedimentar">
+          <path d="M350,100 
+                   C350,100 370,70 400,50 
+                   C430,70 450,100 450,100 
+                   C450,100 400,120 350,100 Z" 
+                fill="url(#sedimentaryPattern)"/>
+          <text x="400" y="130">Rochas Sedimentares</text>
+        </g>
+        
+        <!-- Enhanced Process Arrows and Labels - adjusted y positions -->
+        <g id="arrows">
+          <!-- Main cycle arrows -->
+          <path d="M200,225 Q350,225 600,225" class="arrow arrow-fast" marker-end="url(#arrowhead)"/>
+          <text x="400" y="210" class="process-label">
+            <tspan x="400" dy="0">Fusão</tspan>
+          </text>
+
+          <path d="M650,175 Q500,50 425,75" class="arrow" marker-end="url(#arrowhead)"/>
+          <text x="525" y="100" class="process-label">
+            <tspan x="525" dy="0">Intemperismo</tspan>
+            <tspan x="525" dy="15">e Erosão</tspan>
+          </text>
+
+          <path d="M375,75 Q200,50 175,175" class="arrow" marker-end="url(#arrowhead)"/>
+          <text x="250" y="100" class="process-label">
+            <tspan x="250" dy="0">Metamorfismo</tspan>
+          </text>
+
+          <!-- Additional interaction arrows -->
+          <path d="M175,200 Q175,150 375,100" class="arrow arrow-slow" marker-end="url(#arrowhead)"/>
+          <text x="225" y="150" class="process-label">
+            <tspan x="225" dy="0">Pressão e</tspan>
+            <tspan x="225" dy="15">Temperatura</tspan>
+          </text>
+
+          <path d="M625,200 Q625,150 425,100" class="arrow arrow-slow" marker-end="url(#arrowhead)"/>
+          <text x="575" y="150" class="process-label">
+            <tspan x="575" dy="0">Erosão e</tspan>
+            <tspan x="575" dy="15">Sedimentação</tspan>
+          </text>
+
+          <!-- Circular self-referencing arrows -->
+          <path d="M150,175 C100,175 100,125 150,125" class="arrow" marker-end="url(#arrowhead)"/>
+          <text x="100" y="140" class="process-label">
+            <tspan x="100" dy="0">Recristalização</tspan>
+          </text>
+
+          <path d="M650,225 C675,225 675,300 650,300" class="arrow" marker-end="url(#arrowhead)"/>
+          <text x="700" y="275" class="process-label">
+            <tspan x="700" dy="0">Refusão</tspan>
+          </text>
+
+          <path d="M400,75 C450,75 450,25 400,25" class="arrow" marker-end="url(#arrowhead)"/>
+          <text x="400" y="20" class="process-label">
+            <tspan x="400" dy="0">Diagênese</tspan>
+          </text>
+        </g>
+        
+        <!-- Arrow Marker -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+    
+    <div id="info-panel" class="info-panel">
+      <h2>Selecione uma rocha para aprender mais</h2>
+      <div id="rock-info"></div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

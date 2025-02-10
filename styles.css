@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f0f0;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 2rem;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+}
+
+.diorama {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin: 0 auto 2rem;
+  overflow: hidden;
+  max-width: 900px;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+.rock-group {
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.rock-group:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.rock-group text {
+  font-size: 14px;
+  fill: #333;
+  text-anchor: middle;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.process-label {
+  font-size: 12px;
+  fill: #444;
+  text-anchor: middle;
+  transition: fill 0.3s ease;
+}
+
+.process-label.has-info {
+  cursor: help;
+  text-decoration: underline dotted #333;
+}
+
+.process-label.has-info:hover {
+  fill: #0066cc;
+}
+
+.arrow {
+  fill: none;
+  stroke: #333;
+  stroke-width: 2;
+  stroke-dasharray: 6;
+  animation: flowArrow 20s linear infinite;
+}
+
+.arrow-fast {
+  animation: flowArrow 15s linear infinite;
+}
+
+.arrow-slow {
+  animation: flowArrow 25s linear infinite;
+}
+
+.process-box {
+  fill: rgba(255, 255, 255, 0.9);
+  rx: 5;
+  ry: 5;
+}
+
+.info-panel {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.info-panel h2 {
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.interaction-details {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.interaction-details h4 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.term-popup {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  max-width: 250px;
+  font-size: 14px;
+  z-index: 1000;
+  display: none;
+  pointer-events: none;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.term-popup.visible {
+  display: block;
+}
+
+.process-label {
+  font-size: 12px;
+  fill: #444;
+  text-anchor: middle;
+  transition: fill 0.3s ease;
+}
+
+@keyframes flowArrow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.2); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+.rock-group.active {
+  animation: pulse 2s infinite;
+}
+
+.magma-text {
+  font-size: 14px;
+  fill: #ffffff;
+  text-anchor: middle;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+#magmaPool {
+  filter: url(#glow);
+}
+
+@keyframes magmaGlow {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+#magmaPool path {
+  animation: magmaGlow 2s infinite ease-in-out;
+}
